@@ -1,8 +1,10 @@
 package github.gustapinto.dto.response;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -41,6 +43,6 @@ public record GetTransactionResponse(
     public static List<GetTransactionResponse> from(List<Transaction> transactions) {
         return transactions.stream()
             .map(t -> GetTransactionResponse.from(t))
-            .toList();
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 }

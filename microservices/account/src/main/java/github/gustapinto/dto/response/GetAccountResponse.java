@@ -1,8 +1,10 @@
 package github.gustapinto.dto.response;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -45,6 +47,6 @@ public record GetAccountResponse(
     public static List<GetAccountResponse> from(List<Account> accounts) {
         return accounts.stream()
             .map(a -> GetAccountResponse.from(a))
-            .toList();
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 }
